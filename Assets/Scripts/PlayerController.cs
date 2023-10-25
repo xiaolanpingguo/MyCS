@@ -98,7 +98,6 @@ public class PlayerController : MonoBehaviour
         m_playerInputActions.Gameplay.Disable();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (dead)

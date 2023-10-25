@@ -53,7 +53,7 @@ public class UIManager
 
     public void UpdateBulletNum(int curretNum,int totalNum)
     {
-        textBulletNum.text = curretNum.ToString() + "/" + totalNum.ToString();
+        //textBulletNum.text = curretNum.ToString() + "/" + totalNum.ToString();
     }
 
     public void ShowDeadUI()
