@@ -14,7 +14,7 @@ public class Weapon : MonoBehaviour
     public WEAPONTYPE weaponType;
     private List<ActiveTrail> activeTrails;
     public Projectile projectilePrefab;
-    public float projectileLaunchForce=200;
+    public float projectileLaunchForce = 200;
     public AdvancedWeaponSettings advancedWeaponSettings;
     public int clipSize = 4;//弹夹里子弹数量(当前可以往里放的最大数量)
     public int clipContent;//当前弹夹里剩余子弹数
@@ -49,19 +49,19 @@ public class Weapon : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {      
-        if (rayTrailPrefab!=null)
+        if (rayTrailPrefab != null)
         {
-            //如果当前武器可以发射激光，那么需要先生成几个备用的预制体
-            Game.PoolMgr.InitPool(rayTrailPrefab,8);
+            Game.PoolMgr.InitPool(rayTrailPrefab, 8);
         }
+
         activeTrails = new List<ActiveTrail>();
         if (projectilePrefab!=null)
         {
-            Game.PoolMgr.InitPool(projectilePrefab,8);
+            Game.PoolMgr.InitPool(projectilePrefab, 8);
         }
+
         currentWeaponState = WEAPONSTATE.IDLE;
         fireNameHash= Animator.StringToHash("fire");
         reloadNameHash = Animator.StringToHash("reload");
@@ -74,54 +74,49 @@ public class Weapon : MonoBehaviour
         {
             telesopicView = Camera.main.transform.GetComponent<TelesopicView>();
         }
+
         chargeTimer = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateController();
         FireInput();
+
         //if (Input.GetButtonDown("Reload"))
         //{
         //    Reload();
         //}
+
         if (shotTimer>0)
         {
             shotTimer -= Time.deltaTime;
         }
+
         UpdateTrailState();
     }
-    /// <summary>
-    /// 获取子弹数量
-    /// </summary>
-    /// <returns></returns>
+
     public int GetInitAmount()
     {
         return initAmount;
     }
-    /// <summary>
-    /// 获取武器的ID
-    /// </summary>
-    /// <returns></returns>
+
     public int GetID()
     {
         return itemID;
     }
-    /// <summary>
-    /// 选择当前武器
-    /// </summary>
+
     public void Selected()
     {
-        gameObject.SetActive(owner.GetAmmoAmount(itemID)!=0||clipContent!=0);
+        gameObject.SetActive(owner.GetAmmoAmount(itemID) != 0 || clipContent != 0);
         animator.SetTrigger("selected");
         if (fireAnimationClip!=null)
         {
-            animator.SetFloat("fireSpeed",fireAnimationClip.length/fireRete);
+            animator.SetFloat("fireSpeed",fireAnimationClip.length / fireRete);
         }
         if (reloadAnimationClip!=null)
         {
-            animator.SetFloat("reloadSpeed", reloadAnimationClip.length/reloadTime);
+            animator.SetFloat("reloadSpeed", reloadAnimationClip.length / reloadTime);
         }
         currentWeaponState = WEAPONSTATE.IDLE;
         owner.decreaseSpeed = decreaseSpeed;
@@ -134,9 +129,7 @@ public class Weapon : MonoBehaviour
         }
        
     }
-    /// <summary>
-    /// 收起武器
-    /// </summary>
+
     public void PutAway()
     {
         gameObject.SetActive(false);
@@ -153,19 +146,15 @@ public class Weapon : MonoBehaviour
             activeTrails.Clear();
         }
     }
-    /// <summary>
-    /// 捡起武器，制定当前武器拥有者即PlayerController的引用
-    /// </summary>
+
     public void PickUp(PlayerController PlayerController)
     {
          owner= PlayerController;
     }
-    /// <summary>
-    /// 攻击方法
-    /// </summary>
+
     private void Fire()
     {
-        if (currentWeaponState!=WEAPONSTATE.IDLE||shotTimer>0)
+        if (currentWeaponState != WEAPONSTATE.IDLE || shotTimer>0)
         {
             return;
         }
@@ -193,15 +182,13 @@ public class Weapon : MonoBehaviour
             ProjectileShot();
         }
     }
-    /// <summary>
-    /// 发射激光类型枪的攻击方式
-    /// </summary>
+
     private void RayCastShot()
     {
         //发散比例（单位长度）
         float spreadRatio = advancedWeaponSettings.spreadAngle / Camera.main.fieldOfView;
-        Vector2 spread =spreadRatio*Random.insideUnitCircle;
-        Ray ray= Camera.main.ViewportPointToRay(Vector3.one*0.5f+ (Vector3)spread);
+        Vector2 spread = spreadRatio * Random.insideUnitCircle;
+        Ray ray= Camera.main.ViewportPointToRay(Vector3.one * 0.5f + (Vector3)spread);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 1000, ~(1 << 8), QueryTriggerInteraction.Ignore))
         {
@@ -237,15 +224,13 @@ public class Weapon : MonoBehaviour
                     {
                         renderer = lineRenderer,
                         direction=(trailPos[1]-trailPos[0]).normalized,
-                        remainningTime=0.3f
+                        remainningTime = 0.3f
                     }
-                    ) ;
+                    );
             }
         }
     }
-    /// <summary>
-    /// 更新激光拖尾效果（模拟位移）
-    /// </summary>
+
     private void UpdateTrailState()
     {
         Vector3[] pos = new Vector3[2];
@@ -265,9 +250,7 @@ public class Weapon : MonoBehaviour
             }
         }
     }
-    /// <summary>
-    /// 发射子弹类型枪的攻击方式(包括投掷类武器比如手雷)
-    /// </summary>
+
     private void ProjectileShot()
     {
         Projectile projectile= Game.PoolMgr.GetInstance<Projectile>(projectilePrefab);
@@ -286,55 +269,53 @@ public class Weapon : MonoBehaviour
     {
         return shootPoint;
     }
-    /// <summary>
-    /// 换弹夹
-    /// </summary>
+
     public void Reload()
     {
-        if (clipContent==clipSize||currentWeaponState!=WEAPONSTATE.IDLE)//弹夹子弹数已满
+        if (clipContent== clipSize || currentWeaponState != WEAPONSTATE.IDLE)//弹夹子弹数已满
         {
             return;
         }
+
         int remainingBullet= owner.GetAmmoAmount(itemID);
-        if (remainingBullet==0)
+        if (remainingBullet == 0)
         {
-            if (itemID==2||itemID==6)
+            if (itemID==2 || itemID==6)
             {
                 PutAway();
             }
             return;
         }
-        int chargeInClip= Mathf.Min(remainingBullet,clipSize-clipContent);
+
+        int chargeInClip = Mathf.Min(remainingBullet,clipSize-clipContent);
         clipContent += chargeInClip;
         currentWeaponState = WEAPONSTATE.RELOADING;
-        owner.UpdateAmmoAmount(itemID,-chargeInClip);
+        owner.UpdateAmmoAmount(itemID, -chargeInClip);
         Game.UIMgr.UpdateBulletNum(clipContent, owner.GetAmmoAmount(itemID)); 
         animator.SetTrigger("reload");
-        if (weaponMode==WEAPONMODE.ACCUMULATION)
+        if (weaponMode == WEAPONMODE.ACCUMULATION)
         {
             bulletViewEffect.gameObject.SetActive(false);
             var main = bulletViewEffect.main;
             main.startSize = 0;
         }
-        if (reloadClip!=null)
+
+        if (reloadClip != null)
         {
             Game.AudioSourceMgr.PlaySound(reloadClip);
         }
-      
     }
-    /// <summary>
-    /// 更新武器状态控制器
-    /// </summary>
+
     private void UpdateController()
     {
         animator.SetFloat("moveSpeed",owner.ActualSpeed/5);
-        AnimatorStateInfo animatorStateInfo= animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo animatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         WEAPONSTATE newState;
-        if (animatorStateInfo.shortNameHash==fireNameHash)
+        if (animatorStateInfo.shortNameHash == fireNameHash)
         {
             newState = WEAPONSTATE.FIRING;
         }
-        else if (animatorStateInfo.shortNameHash==reloadNameHash)
+        else if (animatorStateInfo.shortNameHash == reloadNameHash)
         {
             newState = WEAPONSTATE.RELOADING;
         }
@@ -342,11 +323,12 @@ public class Weapon : MonoBehaviour
         {
             newState = WEAPONSTATE.IDLE;
         }
+
         if (newState!=currentWeaponState)
         {
             WEAPONSTATE lastState= currentWeaponState;
             currentWeaponState = newState;
-            if (lastState==WEAPONSTATE.FIRING&&clipContent==0)
+            if (lastState == WEAPONSTATE.FIRING && clipContent == 0)
             {
                 Reload();
             }

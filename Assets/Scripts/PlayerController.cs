@@ -6,7 +6,7 @@ using System.Linq;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController m_characterController;
-    private PlayerInputActions m_playerInputActions;
+    private InputSource m_playerInputActions;
 
     private CollisionFlags m_collisionFlags;
 
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        m_playerInputActions = new PlayerInputActions();
+        m_playerInputActions = new InputSource();
     }
 
     void Start()
@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 inputMove = Vector2.ClampMagnitude(m_playerInputActions.Gameplay.Move.ReadValue<Vector2>(), 1f);
         ActualSpeed = MoveSpeed;
-        bool isRunning = m_playerInputActions.Gameplay.Run.IsPressed();
+        bool isRunning = m_playerInputActions.Gameplay.Sprint.IsPressed();
         if (isRunning)
         {
             ActualSpeed *= RunningSpeedMultiple;
@@ -219,11 +219,11 @@ public class PlayerController : MonoBehaviour
         //{
         //    id = weaponsDict.Count - 1;
         //}
-        if (id>weaponsDict.Keys.Max())
+        if (id > weaponsDict.Keys.Max())
         {
             id = weaponsDict.Keys.Min();
         }
-        else if(id<weaponsDict.Keys.Min())
+        else if(id < weaponsDict.Keys.Min())
         {
             id = weaponsDict.Keys.Max();
         }
@@ -242,17 +242,19 @@ public class PlayerController : MonoBehaviour
                 id--;
             }
         }
+
         //隐藏上一把武器
-        if (currentWeaponID!=-1)//排除第一次没有武器的情况
+        if (currentWeaponID != -1)//排除第一次没有武器的情况
         {
             weaponsDict[currentWeaponID].PutAway();
         }
+
         //显示当前武器
         weaponsDict[id].Selected();
         currentWeaponID = id;
     }
 
-    public void ChangeCurrentWeapon(bool autoChange=false)
+    public void ChangeCurrentWeapon(bool autoChange = false)
     {
         if (autoChange)
         {
@@ -290,7 +292,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        
     }
 
     public void PickUpWeapon(int weaponID)
@@ -301,7 +302,7 @@ public class PlayerController : MonoBehaviour
             Weapon weapon = weaponsDict[weaponID];
             ammoInventory[weapon.GetID()] = weapon.GetInitAmount();
             weapon.clipContent = weapon.clipSize;
-            if (currentWeaponID==weaponID)
+            if (currentWeaponID == weaponID)
             {
                 Game.UIMgr.UpdateBulletNum(weapon.clipSize, weapon.GetInitAmount());
             }
