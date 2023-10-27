@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         weaponsDict = new Dictionary<int, Weapon>();
         ammoInventory = new Dictionary<int, int>();
         currentHP = initHP;
-        //Game.UIMgr.ShowOrHideWeaponUIView(false);
+        //Game1.UIMgr.ShowOrHideWeaponUIView(false);
         for (int i = 0; i < m_weapons.Length; i++)
         {
             m_weapons[i].gameObject.SetActive(true);
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
         {
             m_isGrounded = false;
             m_jumpSpeed = InitJumpSpeed;
-            Game.AudioSourceMgr.PlaySound(jumpClip, 0.8f, 1.1f);
+            Game1.AudioSourceMgr.PlaySound(jumpClip, 0.8f, 1.1f);
             canPlayLandClip = true;
         }
 
@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
             if (canPlayLandClip)
             {
                 canPlayLandClip = false;
-                Game.AudioSourceMgr.PlaySound(landClip, 0.8f, 1.1f);
+                Game1.AudioSourceMgr.PlaySound(landClip, 0.8f, 1.1f);
             }
 
             m_isGrounded = false;
@@ -304,7 +304,7 @@ public class PlayerController : MonoBehaviour
             weapon.clipContent = weapon.clipSize;
             if (currentWeaponID == weaponID)
             {
-                Game.UIMgr.UpdateBulletNum(weapon.clipSize, weapon.GetInitAmount());
+                Game1.UIMgr.UpdateBulletNum(weapon.clipSize, weapon.GetInitAmount());
             }
         }
         else//当前这种名称的武器列表里没有
@@ -368,19 +368,19 @@ public class PlayerController : MonoBehaviour
             m_cameraTrans.eulerAngles = deadPostionTrans.eulerAngles;
             weaponPlaceTrans.gameObject.SetActive(false);
             currentHP = 0;
-            Game.UIMgr.ShowDeadUI();
-            Game.AudioSourceMgr.PlaySound(deadClip);
+            Game1.UIMgr.ShowDeadUI();
+            Game1.AudioSourceMgr.PlaySound(deadClip);
         }
         else
         {
             if (value>0)
             {
-                Game.AudioSourceMgr.PlaySound(hurtClip);
-                Game.UIMgr.ShowTakeDamageView();
+                Game1.AudioSourceMgr.PlaySound(hurtClip);
+                Game1.UIMgr.ShowTakeDamageView();
                 cameraShaker.SetShakeValue(0.2f, 0.5f);
             }
             
         }
-        Game.UIMgr.UpdateHPValue(currentHP);
+        Game1.UIMgr.UpdateHPValue(currentHP);
     }
 }

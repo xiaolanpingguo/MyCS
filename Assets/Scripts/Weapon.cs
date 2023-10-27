@@ -53,13 +53,13 @@ public class Weapon : MonoBehaviour
     {      
         if (rayTrailPrefab != null)
         {
-            Game.PoolMgr.InitPool(rayTrailPrefab, 8);
+            Game1.PoolMgr.InitPool(rayTrailPrefab, 8);
         }
 
         activeTrails = new List<ActiveTrail>();
         if (projectilePrefab!=null)
         {
-            Game.PoolMgr.InitPool(projectilePrefab, 8);
+            Game1.PoolMgr.InitPool(projectilePrefab, 8);
         }
 
         currentWeaponState = WEAPONSTATE.IDLE;
@@ -68,7 +68,7 @@ public class Weapon : MonoBehaviour
         clipContent = clipSize;
         if (raycastHitEffectPrefab!=null)
         {
-            Game.PoolMgr.InitPool(raycastHitEffectPrefab,8);
+            Game1.PoolMgr.InitPool(raycastHitEffectPrefab,8);
         }
         if (hasTelesopicView)
         {
@@ -120,12 +120,12 @@ public class Weapon : MonoBehaviour
         }
         currentWeaponState = WEAPONSTATE.IDLE;
         owner.decreaseSpeed = decreaseSpeed;
-        Game.UIMgr.ShowOrHideWeaponUIView(true);
-        Game.UIMgr.ChangeWeaponUIView(itemID);
-        Game.UIMgr.UpdateBulletNum(clipContent,owner.GetAmmoAmount(itemID));
+        Game1.UIMgr.ShowOrHideWeaponUIView(true);
+        Game1.UIMgr.ChangeWeaponUIView(itemID);
+        Game1.UIMgr.UpdateBulletNum(clipContent,owner.GetAmmoAmount(itemID));
         if (reloadClip != null)
         {
-            Game.AudioSourceMgr.PlaySound(reloadClip);
+            Game1.AudioSourceMgr.PlaySound(reloadClip);
         }
        
     }
@@ -166,10 +166,10 @@ public class Weapon : MonoBehaviour
             }
             return;
         }
-        Game.AudioSourceMgr.PlaySound(shootClip);
+        Game1.AudioSourceMgr.PlaySound(shootClip);
         shotTimer = fireRete;
         clipContent -= 1;
-        Game.UIMgr.UpdateBulletNum(clipContent, owner.GetAmmoAmount(itemID));
+        Game1.UIMgr.UpdateBulletNum(clipContent, owner.GetAmmoAmount(itemID));
         animator.SetTrigger("fire");
         owner.cameraShaker.SetShakeValue(advancedWeaponSettings.shakeTime, 0.05f*advancedWeaponSettings.shakeStrength);
         currentWeaponState = WEAPONSTATE.FIRING;
@@ -192,7 +192,7 @@ public class Weapon : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 1000, ~(1 << 8), QueryTriggerInteraction.Ignore))
         {
-            ParticleSystem ps= Game.PoolMgr.GetInstance<ParticleSystem>(raycastHitEffectPrefab);
+            ParticleSystem ps= Game1.PoolMgr.GetInstance<ParticleSystem>(raycastHitEffectPrefab);
             ps.transform.position = hit.point;
             ps.transform.forward= hit.normal;
             ps.gameObject.SetActive(true);
@@ -210,12 +210,12 @@ public class Weapon : MonoBehaviour
             }
             else
             {
-                Game.AudioSourceMgr.PlaySound(hitWallClip);
+                Game1.AudioSourceMgr.PlaySound(hitWallClip);
             }
 
             if (rayTrailPrefab!=null)
             {
-                LineRenderer lineRenderer= Game.PoolMgr.GetInstance<LineRenderer>(rayTrailPrefab);
+                LineRenderer lineRenderer= Game1.PoolMgr.GetInstance<LineRenderer>(rayTrailPrefab);
                 lineRenderer.gameObject.SetActive(true);
                 Vector3[] trailPos = new Vector3[] { shootPoint.position,hit.point };
                 lineRenderer.SetPositions(trailPos);
@@ -253,7 +253,7 @@ public class Weapon : MonoBehaviour
 
     private void ProjectileShot()
     {
-        Projectile projectile= Game.PoolMgr.GetInstance<Projectile>(projectilePrefab);
+        Projectile projectile= Game1.PoolMgr.GetInstance<Projectile>(projectilePrefab);
         projectile.gameObject.SetActive(true);
         if (weaponMode==WEAPONMODE.ACCUMULATION)
         {
@@ -291,7 +291,7 @@ public class Weapon : MonoBehaviour
         clipContent += chargeInClip;
         currentWeaponState = WEAPONSTATE.RELOADING;
         owner.UpdateAmmoAmount(itemID, -chargeInClip);
-        Game.UIMgr.UpdateBulletNum(clipContent, owner.GetAmmoAmount(itemID)); 
+        Game1.UIMgr.UpdateBulletNum(clipContent, owner.GetAmmoAmount(itemID)); 
         animator.SetTrigger("reload");
         if (weaponMode == WEAPONMODE.ACCUMULATION)
         {
@@ -302,7 +302,7 @@ public class Weapon : MonoBehaviour
 
         if (reloadClip != null)
         {
-            Game.AudioSourceMgr.PlaySound(reloadClip);
+            Game1.AudioSourceMgr.PlaySound(reloadClip);
         }
     }
 

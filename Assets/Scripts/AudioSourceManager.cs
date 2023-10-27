@@ -13,11 +13,11 @@ public class AudioSourceManager
 
     public void Init()
     {
-        Game.PoolMgr.InitPool(m_soundPlayer, 20);
+        Game1.PoolMgr.InitPool(m_soundPlayer, 20);
     }
 
     public void PlaySound(AudioClip audioClip, float pitchMin = 1, float pitchMax = 1)
     {
-        Game.PoolMgr.GetInstance<SoundPlayer>(m_soundPlayer).PlayClip(audioClip,pitchMin,pitchMax);
+        Game1.PoolMgr.GetInstance<SoundPlayer>(m_soundPlayer).PlayClip(audioClip,pitchMin,pitchMax);
     }
 }

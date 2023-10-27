@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Game : MonoBehaviour
+public class Game1 : MonoBehaviour
 {
-    public static Game Instance { get; private set; }
+    public static Game1 Instance { get; private set; }
 
     public static AudioSourceManager AudioSourceMgr { get; private set; }
     public static PoolManager PoolMgr { get; private set; }
@@ -26,6 +26,6 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

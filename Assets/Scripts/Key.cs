@@ -24,7 +24,7 @@ public class Key : MonoBehaviour
         if (other.tag=="Player")
         {
             //door.OpenDoor();
-            Game.AudioSourceMgr.PlaySound(pickupClip);
+            Game1.AudioSourceMgr.PlaySound(pickupClip);
             Destroy(gameObject);
         }
     }

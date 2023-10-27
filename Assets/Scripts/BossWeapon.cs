@@ -25,7 +25,7 @@ public class BossWeapon : MonoBehaviour
             .GetComponent<PlayerController>();
         if (destoryEffect!=null)
         {
-            Game.PoolMgr.InitPool(destoryEffect,10);
+            Game1.PoolMgr.InitPool(destoryEffect,10);
         }
         damageTimeVal = initDamageTime;
         //transform.LookAt(targetPos);
@@ -71,7 +71,7 @@ public class BossWeapon : MonoBehaviour
             
             if (destoryEffect!=null)
             {
-                ParticleSystem particleSystem= Game.PoolMgr.GetInstance<ParticleSystem>(destoryEffect);
+                ParticleSystem particleSystem= Game1.PoolMgr.GetInstance<ParticleSystem>(destoryEffect);
                 particleSystem.gameObject.SetActive(true);
                 particleSystem.transform.position = transform.position+offset;
                 particleSystem.time = 0;
@@ -79,7 +79,7 @@ public class BossWeapon : MonoBehaviour
             }        
             if (canMove)
             {
-                //gameObject.transform.SetParent(Game.PoolMgr.transform);
+                //gameObject.transform.SetParent(Game1.PoolMgr.transform);
                 timeVal = 0;
             }
             if (isSmoke)

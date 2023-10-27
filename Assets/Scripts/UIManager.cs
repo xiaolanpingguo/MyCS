@@ -64,7 +64,7 @@ public class UIManager
 
     private void PlayLossMusic()
     {
-        Game.AudioSourceMgr.PlaySound(lossClip);
+        Game1.AudioSourceMgr.PlaySound(lossClip);
         //Invoke("LoadcurrentScene", 3);
     }
 

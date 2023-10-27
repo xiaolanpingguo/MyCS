@@ -16,7 +16,7 @@ public class BossBehavior : MonoBehaviour
         playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
         if (skillWeapon!=null)
         {
-            Game.PoolMgr.InitPool(skillWeapon,10);
+            Game1.PoolMgr.InitPool(skillWeapon,10);
         }
     }
 
@@ -31,13 +31,13 @@ public class BossBehavior : MonoBehaviour
     private void CreateSkillBall()
     {
         bossWeaponViewGo.SetActive(false);
-        GameObject go= Game.PoolMgr.GetInstance<GameObject>(skillWeapon);
+        GameObject go= Game1.PoolMgr.GetInstance<GameObject>(skillWeapon);
         go.SetActive(true);
         go.transform.SetParent(null);
         go.transform.position = attackTrans.position;
         go.transform.LookAt(playerTrans.position);
         transform.parent.LookAt(new Vector3(playerTrans.position.x, transform.position.y
                 , playerTrans.position.z));
-        Game.AudioSourceMgr.PlaySound(skillClip);
+        Game1.AudioSourceMgr.PlaySound(skillClip);
     }
 }

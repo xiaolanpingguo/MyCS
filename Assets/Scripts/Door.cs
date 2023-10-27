@@ -21,12 +21,12 @@ public class Door : MonoBehaviour
                 if (keyGo == null)
                 {
                     unLocked = true;
-                    Game.AudioSourceMgr.PlaySound(openDoorClip);
-                    Game.AudioSourceMgr.PlaySound(doorClip);
+                    Game1.AudioSourceMgr.PlaySound(openDoorClip);
+                    Game1.AudioSourceMgr.PlaySound(doorClip);
                 }
                 else
                 {
-                    Game.AudioSourceMgr.PlaySound(cantOpenClip);
+                    Game1.AudioSourceMgr.PlaySound(cantOpenClip);
                 }
             }
             

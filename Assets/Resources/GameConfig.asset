@@ -1,0 +1,256 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7763ca32b12f41c2812eb39ed17f765b, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: 
+  Player:
+  - PrefabPath: Player
+    entity:
+      EntityId: 0
+      PrefabId: 0
+      transform:
+        pos:
+          _x: 0
+          _y: 0
+        y:
+          _val: 0
+        deg:
+          _val: 0
+      rigidbody:
+        Speed:
+          _x: 0
+          _y: 0
+          _z: 0
+        Mass:
+          _val: 1000
+        isEnable: 1
+        isSleep: 1
+        isOnFloor: 1
+      colliderData:
+        y:
+          _val: 0
+        pos:
+          _x: 0
+          _y: 0
+        high:
+          _val: 0
+        radius:
+          _val: 0
+        size:
+          _x: 0
+          _y: 0
+        up:
+          _x: 0
+          _y: 0
+        deg:
+          _val: 0
+      animator:
+        configId: 0
+        config: {fileID: 0}
+        curAnimBindInfo:
+          name: 
+          isOnce: 0
+          isMoveByAnim: 0
+          eventPoints: []
+      skillBox:
+        configId: 0
+        isFiring: 0
+        config: {fileID: 0}
+      moveSpd:
+        _val: 5000
+      turnSpd:
+        _val: 360000
+      curHealth: 0
+      maxHealth: 100
+      damage: 10
+      isInvincible: 0
+      isFire: 0
+      localId: 0
+      mover:
+        hasReachTarget: 0
+        needMove: 0
+  Enemies:
+  - PrefabPath: Enemy
+    entity:
+      EntityId: 0
+      PrefabId: 10
+      transform:
+        pos:
+          _x: 0
+          _y: 0
+        y:
+          _val: 0
+        deg:
+          _val: 0
+      rigidbody:
+        Speed:
+          _x: 0
+          _y: 0
+          _z: 0
+        Mass:
+          _val: 0
+        isEnable: 0
+        isSleep: 0
+        isOnFloor: 0
+      colliderData:
+        y:
+          _val: 0
+        pos:
+          _x: 0
+          _y: 0
+        high:
+          _val: 0
+        radius:
+          _val: 0
+        size:
+          _x: 0
+          _y: 0
+        up:
+          _x: 0
+          _y: 0
+        deg:
+          _val: 0
+      animator:
+        configId: 0
+        config: {fileID: 0}
+        curAnimBindInfo:
+          name: 
+          isOnce: 0
+          isMoveByAnim: 0
+          eventPoints: []
+      skillBox:
+        configId: 0
+        isFiring: 0
+        config: {fileID: 0}
+      moveSpd:
+        _val: 2000
+      turnSpd:
+        _val: 150000
+      curHealth: 100
+      maxHealth: 100
+      damage: 10
+      isInvincible: 0
+      isFire: 0
+      brain:
+        targetId: 0
+        stopDistSqr:
+          _val: 0
+        atkInterval:
+          _val: 0
+  Spawner:
+  - PrefabPath: Spawner
+    entity:
+      EntityId: 0
+      PrefabId: 100
+      transform:
+        pos:
+          _x: 0
+          _y: 0
+        y:
+          _val: 0
+        deg:
+          _val: 0
+      Info:
+        spawnTime:
+          _val: 0
+        spawnPoint:
+          _x: 0
+          _y: 0
+          _z: 0
+        prefabId: 0
+      Timer:
+        _val: 0
+  - PrefabPath: Spawner
+    entity:
+      EntityId: 0
+      PrefabId: 101
+      transform:
+        pos:
+          _x: 0
+          _y: 0
+        y:
+          _val: 0
+        deg:
+          _val: 0
+      Info:
+        spawnTime:
+          _val: 0
+        spawnPoint:
+          _x: 0
+          _y: 0
+          _z: 0
+        prefabId: 0
+      Timer:
+        _val: 0
+  - PrefabPath: Spawner
+    entity:
+      EntityId: 0
+      PrefabId: 102
+      transform:
+        pos:
+          _x: 0
+          _y: 0
+        y:
+          _val: 0
+        deg:
+          _val: 0
+      Info:
+        spawnTime:
+          _val: 0
+        spawnPoint:
+          _x: 0
+          _y: 0
+          _z: 0
+        prefabId: 0
+      Timer:
+        _val: 0
+  Animators:
+  - {fileID: 0}
+  Skills:
+  - {fileID: 0}
+  CollisionConfig:
+    Pos:
+      _x: 0
+      _y: 0
+      _z: 0
+    WorldSize:
+      _val: 60000
+    MinNodeSize:
+      _val: 1000
+    Loosenessval:
+      _val: 1250
+    Percent:
+      _val: 100
+    Count: 100
+    WhowTreeId: 0
+    ScrollPos: {x: 0, y: 0}
+    IsShow: 1
+    CollisionMatrix: 000000000000000000
+  RecorderFilePath: Recorder/0.bytes
+  DumpStrPath: ../DumpStr
+  ClientModeInfo:
+    LocalId: 0
+    UserCount: 1
+    MapId: 0
+    RoomId: 0
+    Seed: 0
+    UserInfos:
+    - _Username: FishMan
+      _UserId: 0
+      _Datas: []
+    UdpEnd:
+      Ip: 
+      Port: 0
+    TcpEnd:
+      Ip: 
+      Port: 0
+    SimulationSpeed: 0

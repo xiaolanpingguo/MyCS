@@ -41,7 +41,7 @@ public class TelesopicView : MonoBehaviour
                 Camera.main.fieldOfView -= Time.deltaTime * zoomSpeed;
             }
         }
-        //Game.UIMgr.OpenOrCloseTelesopicView();
+        //Game1.UIMgr.OpenOrCloseTelesopicView();
     }
 
     private void CloseTelesopicView()
@@ -57,7 +57,7 @@ public class TelesopicView : MonoBehaviour
                 Camera.main.fieldOfView += Time.deltaTime * zoomSpeed;
             }
         }
-        //Game.UIMgr.OpenOrCloseTelesopicView(false);
+        //Game1.UIMgr.OpenOrCloseTelesopicView(false);
     }
 
     public void OpenTheTelesopicView(bool open=true)

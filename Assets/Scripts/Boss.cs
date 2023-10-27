@@ -235,7 +235,7 @@ public class Boss : Enemy
             }
             else
             {
-                Game.AudioSourceMgr.PlaySound(hurtClip);
+                Game1.AudioSourceMgr.PlaySound(hurtClip);
             }
             animator.SetTrigger("Hit");
             animator.SetFloat("HitY", 0);
@@ -275,7 +275,7 @@ public class Boss : Enemy
         {
             return;
         }
-        Game.AudioSourceMgr.PlaySound(deadClip);
+        //Game1.AudioSourceMgr.PlaySound(deadClip);
         animator.SetTrigger("Die");
         isDead = true;
         keyGo.SetActive(true);

@@ -12,7 +12,7 @@ public class BloodCell : Enemy
         base.OnCollisionEnter(collision);
         if (collision.transform.tag=="Player")
         {
-            Game.AudioSourceMgr.PlaySound(audioClip);
+            Game1.AudioSourceMgr.PlaySound(audioClip);
             playerTrans.GetComponent<PlayerController>().TakeDamage(-addValue);
             gameObject.SetActive(false);
         }
@@ -23,7 +23,7 @@ public class BloodCell : Enemy
         base.TakeDamage(damageValue);
         if (currentHealth<=0)
         {
-            Game.AudioSourceMgr.PlaySound(audioClip);
+            Game1.AudioSourceMgr.PlaySound(audioClip);
             playerTrans.GetComponent<PlayerController>().TakeDamage(-addValue);
         }
     }

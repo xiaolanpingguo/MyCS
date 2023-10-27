@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
     {
         if (destoryEffect)
         {
-            Game.PoolMgr.InitPool(destoryEffect,4);
+            Game1.PoolMgr.InitPool(destoryEffect,4);
         }
         currentHealth = initHealth;
         currentState = ENEMYSTATE.PATROL;
@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            Game.AudioSourceMgr.PlaySound(hurtClip);
+            Game1.AudioSourceMgr.PlaySound(hurtClip);
         }
         if (currentHealth>0)
         {
@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
         }
         if (destoryEffect)
         {
-            ParticleSystem ps = Game.PoolMgr.GetInstance<ParticleSystem>(destoryEffect);
+            ParticleSystem ps = Game1.PoolMgr.GetInstance<ParticleSystem>(destoryEffect);
             ps.time = 0;
             ps.Play();
             ps.transform.position = transform.position+new Vector3(0,0.5f,0);

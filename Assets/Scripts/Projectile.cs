@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         destoryTime = 3;
-        Game.PoolMgr.InitPool(explosionEffect,4);
+        Game1.PoolMgr.InitPool(explosionEffect,4);
         sphereCastPool = new Collider[10];
         if (bulletTrailEffect!=null)
         {
@@ -70,7 +70,7 @@ public class Projectile : MonoBehaviour
     {
         if (explosionEffect!=null)
         {
-            ParticleSystem effect = Game.PoolMgr.GetInstance<ParticleSystem>(explosionEffect);
+            ParticleSystem effect = Game1.PoolMgr.GetInstance<ParticleSystem>(explosionEffect);
             effect.transform.position = transform.position;
             effect.gameObject.SetActive(true);
             effect.time = 0;
@@ -95,14 +95,14 @@ public class Projectile : MonoBehaviour
             }
         }
         
-        Game.AudioSourceMgr.PlaySound(explosionClip);
+        Game1.AudioSourceMgr.PlaySound(explosionClip);
     }
 
     private void DestoryProjectile(GameObject enemyGo=null)
     {
         if (explosionEffect != null)
         {
-            ParticleSystem effect = Game.PoolMgr.GetInstance<ParticleSystem>(explosionEffect);
+            ParticleSystem effect = Game1.PoolMgr.GetInstance<ParticleSystem>(explosionEffect);
             effect.transform.position = transform.position;
             effect.gameObject.SetActive(true);
             effect.time = 0;
@@ -158,7 +158,7 @@ public class Projectile : MonoBehaviour
             }
             else
             {
-                Game.AudioSourceMgr.PlaySound(hitWallClip);
+                Game1.AudioSourceMgr.PlaySound(hitWallClip);
             }
         }
     }

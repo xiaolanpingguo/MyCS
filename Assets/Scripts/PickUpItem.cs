@@ -27,7 +27,7 @@ public class PickUpItem : MonoBehaviour
             PlayerController PlayerController = other.GetComponent<PlayerController>();
             PlayerController.PickUpWeapon(itemID);
             //PlayerController.ChangeCurrentWeapon(true);
-            Game.AudioSourceMgr.PlaySound(pickupClip);
+            Game1.AudioSourceMgr.PlaySound(pickupClip);
             Destroy(gameObject);
         }
     }
