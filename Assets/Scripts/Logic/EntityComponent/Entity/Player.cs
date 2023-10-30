@@ -6,7 +6,9 @@ using Lockstep.Math;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Lockstep.Game {
+namespace Lockstep.Game 
+{
+
     [Serializable]
     public partial class Player : Entity
     {

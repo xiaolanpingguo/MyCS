@@ -1,16 +1,20 @@
-
 using Lockstep.Math;
 using Lockstep.Serialization;
 
-namespace Lockstep.Game {
-    public partial class PlayerInput : BaseFormater,IComponent {
+namespace Lockstep.Game 
+{
+    public partial class PlayerInput : BaseFormater,IComponent 
+    {
+        public static PlayerInput Empty = new PlayerInput();
+
         public LVector2 mousePos;
         public LVector2 inputUV;
         public bool isInputFire;
         public int skillId;
         public bool isSpeedUp;
 
-        public override void Serialize(Serializer writer){
+        public override void Serialize(Serializer writer)
+        {
             writer.Write(mousePos);
             writer.Write(inputUV);
             writer.Write(isInputFire);
@@ -18,7 +22,8 @@ namespace Lockstep.Game {
             writer.Write(isSpeedUp);
         }
 
-        public void Reset(){
+        public void Reset()
+        {
             mousePos = LVector2.zero;
             inputUV = LVector2.zero;
             isInputFire = false;
@@ -26,7 +31,8 @@ namespace Lockstep.Game {
             isSpeedUp = false;
         }
 
-        public override void Deserialize(Deserializer reader){
+        public override void Deserialize(Deserializer reader)
+        {
             mousePos = reader.ReadLVector2();
             inputUV = reader.ReadLVector2();
             isInputFire = reader.ReadBoolean();
@@ -34,14 +40,19 @@ namespace Lockstep.Game {
             isSpeedUp = reader.ReadBoolean();
         }
 
-        public static PlayerInput Empty = new PlayerInput();
-        public override bool Equals(object obj){
-            if (ReferenceEquals(this,obj)) return true;
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
             var other = obj as PlayerInput;
             return Equals(other);
         }
 
-        public bool Equals(PlayerInput other){
+        public bool Equals(PlayerInput other)
+        {
             if (other == null) return false;
             if (mousePos != other.mousePos) return false;
             if (inputUV != other.inputUV) return false;
@@ -51,9 +62,11 @@ namespace Lockstep.Game {
             return true;
         }
 
-        public PlayerInput Clone(){
+        public PlayerInput Clone()
+        {
             var tThis = this;
-            return new PlayerInput() {
+            return new PlayerInput()
+            {
                 mousePos = tThis.mousePos,
                 inputUV = tThis.inputUV,
                 isInputFire = tThis.isInputFire,

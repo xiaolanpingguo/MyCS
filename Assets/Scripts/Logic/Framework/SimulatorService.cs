@@ -110,7 +110,8 @@ namespace Lockstep.Game
         {
             FrameBuffer.__debugMainActorID = localActorId;
             var allActors = new byte[actorCount];
-            for (byte i = 0; i < actorCount; i++) {
+            for (byte i = 0; i < actorCount; i++)
+            {
                 allActors[i] = i;
             }
 
@@ -506,8 +507,8 @@ namespace Lockstep.Game
             }
         }
 
-        private void FillInputWithLastFrame(ServerFrame frame
-            ){
+        private void FillInputWithLastFrame(ServerFrame frame)
+        {
             int tick = frame.tick;
             var inputs = frame.Inputs;
             var lastServerInputs = tick == 0 ? null : m_cmdBuffer.GetFrame(tick - 1)?.Inputs;

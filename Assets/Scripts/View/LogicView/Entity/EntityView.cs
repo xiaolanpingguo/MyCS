@@ -13,7 +13,7 @@ namespace Lockstep.Game
 
         public override void BindEntity(BaseEntity e, BaseEntity oldEntity = null)
         {
-            base.BindEntity(e,oldEntity);
+            base.BindEntity(e, oldEntity);
             e.EntityView = this;
             this.entity = e as Entity;
             if (oldEntity != null) 
@@ -34,7 +34,11 @@ namespace Lockstep.Game
 
         public override void OnDead()
         {
-            if (uiFloatBar != null) FloatBarManager.DestroyText(uiFloatBar);
+            if (uiFloatBar != null)
+            {
+                FloatBarManager.DestroyText(uiFloatBar);
+            }
+
             GameObject.Destroy(gameObject);
         }
 
@@ -59,7 +63,8 @@ namespace Lockstep.Game
         
         private void OnDrawGizmos()
         {
-            if (entity.skillBox.isFiring) {
+            if (entity.skillBox.isFiring)
+            {
                 var skill = entity.skillBox.curSkill;
                 skill?.OnDrawGizmos();
             }
