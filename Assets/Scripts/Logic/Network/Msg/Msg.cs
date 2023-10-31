@@ -1,6 +1,7 @@
 using Lockstep.Math;
 using Lockstep.Serialization;
-using static UnityEngine.Awaitable;
+using Lockstep.Util;
+using UnityEngine;
 
 namespace Lockstep.Game 
 {
@@ -10,6 +11,7 @@ namespace Lockstep.Game
 
         public LVector2 mousePos;
         public LVector2 inputUV;
+        public LVector2 InputLook;
         public ButtonBitField ButtonFlags;
         public bool isInputFire;
         public int skillId;
@@ -19,6 +21,7 @@ namespace Lockstep.Game
         {
             writer.Write(mousePos);
             writer.Write(inputUV);
+            writer.Write(InputLook);
             writer.Write(ButtonFlags.flags);
             writer.Write(isInputFire);
             writer.Write(skillId);
@@ -29,6 +32,7 @@ namespace Lockstep.Game
         {
             mousePos = LVector2.zero;
             inputUV = LVector2.zero;
+            InputLook = LVector2.zero;
             ButtonFlags.flags = 0;
             isInputFire = false;
             skillId = 0;
@@ -39,6 +43,7 @@ namespace Lockstep.Game
         {
             mousePos = reader.ReadLVector2();
             inputUV = reader.ReadLVector2();
+            InputLook = reader.ReadLVector2();
             ButtonFlags.flags = reader.ReadUInt32();
             isInputFire = reader.ReadBoolean();
             skillId = reader.ReadInt32();
@@ -61,6 +66,8 @@ namespace Lockstep.Game
             if (other == null) return false;
             if (mousePos != other.mousePos) return false;
             if (inputUV != other.inputUV) return false;
+            if (InputLook != other.InputLook) return false;
+            if (ButtonFlags.flags != other.ButtonFlags.flags) return false;
             if (isInputFire != other.isInputFire) return false;
             if (skillId != other.skillId) return false;
             if (isSpeedUp != other.isSpeedUp) return false;

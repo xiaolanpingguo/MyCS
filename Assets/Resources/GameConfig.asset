@@ -214,9 +214,9 @@ MonoBehaviour:
       Timer:
         _val: 0
   Animators:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: a4f9936f7eab94c6a9df4a34edf5d92d, type: 2}
   Skills:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: f5f74ca936f2445d588ef85296f61adf, type: 2}
   CollisionConfig:
     Pos:
       _x: 0

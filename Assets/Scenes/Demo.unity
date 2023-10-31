@@ -436,8 +436,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 909491127}
-  - component: {fileID: 909491129}
-  - component: {fileID: 909491130}
   - component: {fileID: 909491131}
   m_Layer: 0
   m_Name: GameManager
@@ -461,66 +459,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &909491129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 909491123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf824b81907cf7246a50370831d51774, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curveAlpha:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  curveScale:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  curveX:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  curveY:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  color: {r: 0, g: 0, b: 0, a: 0}
-  slideTotalTime: 0
-  yOffset: 5
-  xOffset: 5
-  prefab: {fileID: 186680, guid: f273dbcc152ac4d4681d5e4c256fc967, type: 3}
-  maxPoolCount: 50
-  canvas: {fileID: 2018698344}
-  config: {fileID: 11400000, guid: b165f0601718d43df99ecb4ca684714d, type: 2}
---- !u!114 &909491130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 909491123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b01b26e97e8b8247adc0344bff0bf6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 100004, guid: a794bff10c7c3426f91ee44fca15b006, type: 3}
-  maxPoolCount: 50
-  _canvas: {fileID: 2018698344}
-  _config: {fileID: 11400000, guid: bc31694cbe3f14ffaaceed6bcb4a5c1c, type: 2}
 --- !u!114 &909491131
 MonoBehaviour:
   m_ObjectHideFlags: 0

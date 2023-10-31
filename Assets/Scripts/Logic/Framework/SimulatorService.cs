@@ -65,7 +65,7 @@ namespace Lockstep.Game
         private bool m_isInitVideo = false;
         private int m_tickOnLastJumpTo;
         private long m_timestampOnLastJumpToMs;
-        private bool m_isDebugRollback = true;
+        private bool m_isDebugRollback = false;
 
         //refs 
         private IManagerContainer m_mgrContainer;
