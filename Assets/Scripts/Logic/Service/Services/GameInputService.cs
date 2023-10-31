@@ -74,6 +74,7 @@ namespace Lockstep.Game
         {
             m_inputActions = new InputSource();
             m_inputActions.Enable();
+            m_gameplayActions = m_inputActions.Gameplay;
             EnterGameplay();
         }
 
@@ -88,6 +89,7 @@ namespace Lockstep.Game
 
             CurrentUserCommand = default;
             CurrentUserCommand.inputMove = Vector2.ClampMagnitude(m_gameplayActions.Move.ReadValue<Vector2>(), 1f);
+            CurGameInput.inputUV = Vector2.ClampMagnitude(m_gameplayActions.Move.ReadValue<Vector2>(), 1f).ToLVector2();
 
             m_currentFrameButtons = default;
             m_currentFrameButtons.Or(Button.Sprint, m_gameplayActions.Sprint.IsPressed());
@@ -98,6 +100,7 @@ namespace Lockstep.Game
             m_currentFrameButtons.Or(Button.WeaponSwap, m_gameplayActions.WeaponSwap.IsPressed());
 
             CurrentUserCommand.buttons.flags |= m_currentFrameButtons.flags;
+            CurGameInput.ButtonFlags = CurrentUserCommand.buttons;
         }
 
         public static void EnterGameplay()

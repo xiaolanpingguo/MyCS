@@ -18,7 +18,7 @@ public class Game : MonoBehaviour
     private void Awake()
     {
         gameObject.AddComponent<PingMono>();
-        gameObject.AddComponent<InputMono>();
+        //gameObject.AddComponent<InputMono>();
         m_serviceContainer = new UnityServiceContainer();
         m_serviceContainer.GetService<IConstStateService>().GameName = "ARPGDemo";
         m_serviceContainer.GetService<IConstStateService>().IsClientMode = IsClientMode;

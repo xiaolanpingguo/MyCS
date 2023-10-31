@@ -140,7 +140,7 @@ namespace Lockstep.Game
         public void RegisterSystems()
         {
             RegisterSystem(new HeroSystem());
-            RegisterSystem(new EnemySystem());
+            //RegisterSystem(new EnemySystem());
             RegisterSystem(new PhysicSystem());
             RegisterSystem(new HashSystem());
         }

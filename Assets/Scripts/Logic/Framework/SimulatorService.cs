@@ -262,6 +262,9 @@ namespace Lockstep.Game
 
             m_cmdBuffer.DoUpdate(deltaTime);
 
+            var gameInputService = _inputService as GameInputService;
+            gameInputService.Update();
+
             //client mode no network
             if (_constStateService.IsClientMode) 
             {
@@ -287,7 +290,7 @@ namespace Lockstep.Game
                 var revertCount = LRandom.Range(1, maxRollbackCount);
                 for (int i = 0; i < revertCount; i++) 
                 {
-                    var input = new Msg_PlayerInput(m_world.Tick, LocalActorId, _inputService.GetDebugInputCmds());
+                    var input = new Msg_PlayerInput(m_world.Tick, LocalActorId, _inputService.GetInputCmds());
                     var frame = new ServerFrame()
                     {
                         tick = rawTick - i,
@@ -297,12 +300,12 @@ namespace Lockstep.Game
                     m_cmdBuffer.ForcePushDebugFrame(frame);
                 }
 
-                _debugService.Trace("RollbackTo " + (m_world.Tick - revertCount));
-                if (!RollbackTo(m_world.Tick - revertCount, m_world.Tick))
-                {
-                    _commonStateService.IsPause = true;
-                    return;
-                }
+                //_debugService.Trace("RollbackTo " + (m_world.Tick - revertCount));
+                //if (!RollbackTo(m_world.Tick - revertCount, m_world.Tick))
+                //{
+                //    _commonStateService.IsPause = true;
+                //    return;
+                //}
 
                 while (m_world.Tick < rawTick) 
                 {

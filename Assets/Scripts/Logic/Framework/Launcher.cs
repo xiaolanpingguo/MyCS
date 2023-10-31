@@ -81,6 +81,9 @@ namespace Lockstep.Game
                 m_eventRegisterService.RegisterEvent<EEvent, GlobalEventHandler>("OnEvent_", "OnEvent_".Length, EventHelper.AddListener, mgr);
             }
 
+            var gameInputService = m_serviceContainer.GetService<IInputService>()as GameInputService;
+            gameInputService.Awake();
+
             foreach (var mgr in m_mgrContainer.AllMgrs)
             {
                 mgr.DoAwake(m_serviceContainer);
@@ -88,7 +91,6 @@ namespace Lockstep.Game
 
             m_simulatorService = m_serviceContainer.GetService<ISimulatorService>() as SimulatorService;
             m_networkService = m_serviceContainer.GetService<INetworkService>() as NetworkService;
-            m_constStateService = m_serviceContainer.GetService<IConstStateService>();
             m_constStateService = m_serviceContainer.GetService<IConstStateService>();
             if (IsVideoMode)
             {
@@ -100,6 +102,7 @@ namespace Lockstep.Game
             {
                 mgr.DoStart();
             }
+
 
             //Debug.Log("Before StartGame _IdCounter" + BaseEntity.IdCounter);
             //if (!IsReplay && !IsClientMode)

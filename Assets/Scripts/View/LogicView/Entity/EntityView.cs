@@ -52,7 +52,7 @@ namespace Lockstep.Game
             GameObject.Destroy(gameObject);
         }
 
-        private void Update()
+        virtual protected void Update()
         {
             var pos = entity.transform.Pos3.ToVector3();
             transform.position = Vector3.Lerp(transform.position, pos, 0.3f);

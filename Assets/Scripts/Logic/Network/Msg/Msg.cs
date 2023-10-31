@@ -1,5 +1,6 @@
 using Lockstep.Math;
 using Lockstep.Serialization;
+using static UnityEngine.Awaitable;
 
 namespace Lockstep.Game 
 {
@@ -9,6 +10,7 @@ namespace Lockstep.Game
 
         public LVector2 mousePos;
         public LVector2 inputUV;
+        public ButtonBitField ButtonFlags;
         public bool isInputFire;
         public int skillId;
         public bool isSpeedUp;
@@ -17,6 +19,7 @@ namespace Lockstep.Game
         {
             writer.Write(mousePos);
             writer.Write(inputUV);
+            writer.Write(ButtonFlags.flags);
             writer.Write(isInputFire);
             writer.Write(skillId);
             writer.Write(isSpeedUp);
@@ -26,6 +29,7 @@ namespace Lockstep.Game
         {
             mousePos = LVector2.zero;
             inputUV = LVector2.zero;
+            ButtonFlags.flags = 0;
             isInputFire = false;
             skillId = 0;
             isSpeedUp = false;
@@ -35,6 +39,7 @@ namespace Lockstep.Game
         {
             mousePos = reader.ReadLVector2();
             inputUV = reader.ReadLVector2();
+            ButtonFlags.flags = reader.ReadUInt32();
             isInputFire = reader.ReadBoolean();
             skillId = reader.ReadInt32();
             isSpeedUp = reader.ReadBoolean();
